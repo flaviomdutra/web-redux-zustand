@@ -1,10 +1,10 @@
-import { Video, PlayCircle } from "lucide-react";
+import { Video, PlayCircle } from 'lucide-react'
 
 interface LessonProps {
-  title: string;
-  duration: string;
-  isCurrent?: boolean;
-  onPlay: () => void;
+  title: string
+  duration: string
+  isCurrent?: boolean
+  onPlay: () => void
 }
 
 export function Lesson({
@@ -30,5 +30,5 @@ export function Lesson({
         {duration}
       </span>
     </button>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-import { ChevronDown } from "lucide-react";
-import { Lesson } from "./Lesson";
-import * as Collapsible from "@radix-ui/react-collapsible";
-import { useAppSelector } from "../store";
-import { useDispatch } from "react-redux";
-import { play } from "../store/slices/player";
+import { ChevronDown } from 'lucide-react'
+import { Lesson } from './Lesson'
+import * as Collapsible from '@radix-ui/react-collapsible'
+import { useAppSelector } from '../store'
+import { useDispatch } from 'react-redux'
+import { play } from '../store/slices/player'
 
 interface ModuleProps {
-  moduleIndex: number;
-  title: string;
-  amountOfLessons: number;
+  moduleIndex: number
+  title: string
+  amountOfLessons: number
 }
 
 export function Module({
@@ -16,14 +16,14 @@ export function Module({
   title,
   amountOfLessons,
 }: Readonly<ModuleProps>) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const { currentModuleIndex, currentLessonIndex } = useAppSelector(
-    (state) => state.player
-  );
+    (state) => state.player,
+  )
   const lessons = useAppSelector(
-    (state) => state.player.course.modules[moduleIndex].lessons
-  );
+    (state) => state.player.course.modules[moduleIndex].lessons,
+  )
 
   return (
     <Collapsible.Root className="group" defaultOpen={moduleIndex === 0}>
@@ -44,22 +44,22 @@ export function Module({
           {lessons.map((lesson, lessonIndex) => {
             const isCurrent =
               currentModuleIndex === moduleIndex &&
-              currentLessonIndex === lessonIndex;
-              
+              currentLessonIndex === lessonIndex
+
             return (
               <Lesson
                 key={lesson.id}
                 title={lesson.title}
                 duration={lesson.duration}
                 onPlay={() => {
-                  dispatch(play([moduleIndex, lessonIndex]));
+                  dispatch(play([moduleIndex, lessonIndex]))
                 }}
                 isCurrent={isCurrent}
               />
-            );
+            )
           })}
         </nav>
       </Collapsible.Content>
     </Collapsible.Root>
-  );
+  )
 }
